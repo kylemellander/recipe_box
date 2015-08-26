@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recipeace - Recipes to Die For</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand"><span class="logo">Recipeace</span> <span class="subtitle">Recipes to Die for</span></a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/recipes/new">Add a Recipe</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container content">
+      <%= yield %>
+    </div>
+  </body>
+</html>
