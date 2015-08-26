@@ -15,9 +15,10 @@ end
 
 post('/recipes/new') do
   name = params['name']
-  instructions = params['instructions']
+  instructions = params['instructions'].gsub(/\n/, "<br>")
   @tag_string = params['tag']
   @tag = Category.new({tag: @tag_string.gsub(/[, ]/, '')})
+  binding.pry
   all_categories = Category.all
   @recipe = Recipe.new({name: name, instructions: instructions})
   tags = params['tag'].gsub(/, /, ',').split(",")
@@ -56,7 +57,7 @@ end
 
 patch('/recipes/:id') do
   name = params['name']
-  instructions = params['instructions']
+  instructions = params['instructions'].gsub(/\n/, "<br>")
   recipe = Recipe.find(params['id'].to_i)
   recipe.update({name: name, instructions: instructions})
   redirect("/recipes/#{recipe.id}")
@@ -75,6 +76,9 @@ end
 
 patch('/categories/:id') do
   tag = params['tag']
+  if Category.find_by(:tag => tag) != nil
+
+  end
   category = Category.find(params['id'].to_i)
   category.update({tag: tag})
   redirect("/categories/#{category.id}")

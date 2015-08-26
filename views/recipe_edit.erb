@@ -10,7 +10,12 @@
 
   <div class="form-group">
     <label for="instructions">Instructions</label>
-    <textarea type="text" class="form-control" name="instructions"><%= @recipe.instructions %></textarea>
+    <textarea type="text" class="form-control" name="instructions" rows="8"><%= @recipe.instructions.gsub(/<br>/, "\n") %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Tags:</label>
+    <textarea type="text" class="form-control" name="tags" rows="2"><% a = []%><% @recipe.categories.each {|category| a.push(category.tag) } %><% a = a.join(", ") %><%= a %></textarea>
   </div>
 
   <button class="btn btn-default btn-md">Edit</button>
