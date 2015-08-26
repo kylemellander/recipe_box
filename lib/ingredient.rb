@@ -1,1 +1,2 @@
-##not yet
+class Ingredient < ActiveRecord::Base
+end
