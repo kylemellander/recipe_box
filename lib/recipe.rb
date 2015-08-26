@@ -1,5 +1,7 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many(:categories)
+  has_many(:used_ingredients)
+  has_many(:ingredients, through: :used_ingredients)
 
   validates(:name, :presence => true)
   validates(:instructions, :presence => true)
@@ -11,7 +13,5 @@ class Recipe < ActiveRecord::Base
     end
     tags.join(", ")
   end
-
-private
-
+  
 end
