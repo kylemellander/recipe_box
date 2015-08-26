@@ -4,7 +4,11 @@
     <div class="alert alert-danger"><%= error %></div>
   <% end %>
 <% end %>
-
+<% if @tag %>
+  <% @tag.errors.full_messages.each do |error| %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% end %>
+<% end %>
 
 <form action="/recipes/new" method="post">
   <div class="form-group">

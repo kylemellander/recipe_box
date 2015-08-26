@@ -3,7 +3,6 @@ class Recipe < ActiveRecord::Base
 
   validates(:name, :presence => true)
   validates(:instructions, :presence => true)
-  before_save(:check_tags)
 
   def display_tags
     tags = []
@@ -14,9 +13,5 @@ class Recipe < ActiveRecord::Base
   end
 
 private
-
-  def check_tags
-    self.categories.validates_each
-  end
 
 end
