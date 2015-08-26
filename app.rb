@@ -48,3 +48,40 @@ get("/categories/:id") do
   @categories = Category.all
   erb(:category_info)
 end
+
+get('/recipe/:id/edit') do
+  @recipe = Recipe.find(params['id'].to_i)
+  erb(:recipe_edit)
+end
+
+patch('/recipes/:id') do
+  name = params['name']
+  instructions = params['instructions']
+  recipe = Recipe.find(params['id'].to_i)
+  recipe.update({name: name, instructions: instructions})
+  redirect("/recipes/#{recipe.id}")
+end
+
+get('/recipe/:id/delete') do
+  recipe = Recipe.find(params['id'].to_i)
+  recipe.destroy
+  redirect("/")
+end
+
+get('/category/:id/edit') do
+  @category = Category.find(params['id'].to_i)
+  erb(:category_edit)
+end
+
+patch('/categories/:id') do
+  tag = params['tag']
+  category = Category.find(params['id'].to_i)
+  category.update({tag: tag})
+  redirect("/categories/#{category.id}")
+end
+
+get('/category/:id/delete') do
+  category = Category.find(params['id'].to_i)
+  category.destroy
+  redirect("/")
+end

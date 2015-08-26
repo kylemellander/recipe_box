@@ -10,6 +10,10 @@
     <% else %>
       <h3>There are no recipes</h3>
     <% end %>
+
+    <a href="/category/<%= @category.id %>/edit" class="btn btn-primary btn-md">Edit</a>
+
+    <a href="/category/<%= @category.id %>/delete" class="btn btn-danger btn-md">Delete</a>
   </div>
   <div class="col-sm-3">
     <h1>Cats</h1>

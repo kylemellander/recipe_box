@@ -1,0 +1,13 @@
+<h1>Edit <%= @category.tag %></h1>
+
+<form action="/categories/<%= @category.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <div class="form-group">
+    <label for="tag">Name</label>
+    <input type="text" class="form-control" name="tag" value="<%= @category.tag %>">
+  </div>
+
+  <button class="btn btn-default btn-md">Edit</button>
+
+</form>
