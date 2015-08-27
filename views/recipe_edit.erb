@@ -9,6 +9,21 @@
   </div>
 
   <div class="form-group">
+    <div class="input_fields_wrap">
+      <label for="ingredients[]">Ingredients</label>
+      <div class="">
+        <% @recipe.used_ingredients.each do |ingredient| %>
+        <div class="jk-ingredients">
+          <input type="text" class="form-control jk-amount" name="amounts[]" value="<%= ingredient.amount %>"><input type="text" class="form-control jk-ingredient" name="ingredients[]" value="<%= ingredient.ingredient.ingredient %>">
+          <a href="/ingredients/delete/<%= ingredient.ingredient.id %>/?ref=<%= @recipe.id %>">Remove</a>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <button class="btn btn-default btn-sm add_field_button">Add More Ingredients</button>
+  </div>
+
+  <div class="form-group">
     <label for="instructions">Instructions</label>
     <textarea type="text" class="form-control" name="instructions" rows="8"><%= @recipe.instructions.gsub(/<br>/, "\n") %></textarea>
   </div>
