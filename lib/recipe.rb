@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many(:categories)
+
   has_many(:used_ingredients)
   has_many(:ingredients, through: :used_ingredients)
 
@@ -13,5 +14,5 @@ class Recipe < ActiveRecord::Base
     end
     tags.join(", ")
   end
-  
+
 end
