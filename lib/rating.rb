@@ -16,7 +16,6 @@ class Rating < ActiveRecord::Base
 
     recipe = Recipe.find(recipe_id)
     avg_rating = sum/count
-    binding.pry
     recipe.update({:avg_rating => avg_rating})
   end
 end
