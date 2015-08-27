@@ -31,14 +31,12 @@ post('/recipes/new') do
         @recipe.categories.push(Category.new({tag: tag}))
       end
     end
-    @recipe.update({:category_ids => existing_tag_ids})
-    @recipe.save
+    @recipe.update({:category_ids => existing_tag_ids}).save
     count = 0
     amounts.each do |amount|
       new_ingredient = Ingredient.new({:ingredient => ingredients[count]})
       new_ingredient.save
-      new_amount = UsedIngredient.new({:amount => amount, :ingredient_id => new_ingredient.id, :recipe_id => @recipe.id})
-      new_amount.save
+      UsedIngredient.create({:amount => amount, :ingredient_id => new_ingredient.id, :recipe_id => @recipe.id})
       count += 1
     end
     redirect("/recipes/#{@recipe.id}")
