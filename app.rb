@@ -85,13 +85,19 @@ patch('/recipes/:id') do
   end
 
   existing_ingredient_ids = []
+  count = 0
   ingredients.each do |ingredient|
-    if Ingredient.find_by(:ingredient => ingredient.ingredient) != nil
-      existing_ingredient_ids.push(Ingredient.find_by(:ingredient => ingredient.ingredient).id)
+    if Ingredient.find_by(:ingredient => ingredient) != nil
+      ingredient_id = Ingredient.find_by(:ingredient => ingredient).id
+      existing_ingredient_ids.push(ingredient_id)
+      used_ingredient = UsedIngredient.find_by(:ingredient_id => ingredient_id, :recipe_id => recipe.id)
+      used_ingredient.update({:amount => amounts[count]})
     else
-      ingredient_object = Ingredient.create({:ingredient => ingredient.ingredient})
-      existing_ingredient_ids.push(Ingredient.find_by(:ingredient => ingredient.ingredient).id)
+      ingredient_object = Ingredient.create({:ingredient => ingredient})
+      UsedIngredient.create({:ingredient_id => ingredient_object.id, :recipe_id => recipe.id, :amount => amounts[count]})
+      existing_ingredient_ids.push(Ingredient.find_by(:ingredient => ingredient).id)
     end
+    count+=1
   end
 
   recipe.update({:category_ids => existing_tag_ids, :ingredient_ids => existing_ingredient_ids, name: name, instructions: instructions})
