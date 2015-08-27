@@ -15,6 +15,8 @@ end
 
 post('/recipes/new') do
   name = params['name']
+  ingredients = params['ingredients']
+  amounts = params['amounts']
   instructions = params['instructions'].gsub(/\n/, "<br>")
   @tag_string = params['tag']
   @tag = Category.new({tag: @tag_string.gsub(/[, ]/, '')})

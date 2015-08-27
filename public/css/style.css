@@ -1,0 +1,15 @@
+.jk-amount {
+  display:inline;
+  width:100px;
+}
+.jk-ingredient {
+  display:inline;
+  width:auto;
+  margin: 0 10px;
+}
+.jk-ingredients {
+  margin:5px 0;
+}
+.add_field_button {
+  margin-top: 10px;
+}
