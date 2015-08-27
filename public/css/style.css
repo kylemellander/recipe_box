@@ -21,3 +21,22 @@ ul {
 .jk-indent {
   margin-left: 40px;
 }
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+}
+.rating > a {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  text-decoration: none;
+}
+.rating > a:hover:before,
+.rating > a:hover ~ a:before {
+  content: "\2605";
+  position: absolute;
+  color: yellow;
+  text-shadow: 1px 1px 1px black;
+}

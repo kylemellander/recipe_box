@@ -137,3 +137,10 @@ get('/ingredients/delete/:id/') do
   ingredient.destroy
   redirect("/recipe/#{recipe_id}/edit")
 end
+
+get("/rating/:id/:rating") do
+  rating = params['rating'].to_i
+  recipe_id = params['id'].to_i
+  Rating.create({:rating => rating, :recipe_id => recipe_id})
+  redirect("/recipes/#{recipe_id}")
+end
