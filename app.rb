@@ -18,12 +18,11 @@ post('/recipes/new') do
   ingredients = params['ingredients']
   amounts = params['amounts']
   instructions = params['instructions'].gsub(/\n/, "<br>")
-  @tag_string = params['tag']
-  @tag = Category.new({tag: @tag_string.gsub(/[, ]/, '')})
-  all_categories = Category.all
-  @recipe = Recipe.new({name: name, instructions: instructions})
   tags = params['tag'].gsub(/, /, ',').split(",")
-  if @recipe.valid? && @tag.valid?
+  @tag_string = params['tag']
+  @recipe = Recipe.new({name: name, instructions: instructions})
+  @tag = Category.new({tag: @tag_string.gsub(/[, ]/, '')})
+  if @recipe.valid? && @tag.valid? && ingredients.each {|ingredient| break if ingredient == ""} && amounts.each {|amount| break if amount == ""}
     existing_tag_ids = []
     tags.each do |tag|
       if Category.find_by(tag: tag) != nil
@@ -34,8 +33,19 @@ post('/recipes/new') do
     end
     @recipe.update({:category_ids => existing_tag_ids})
     @recipe.save
+    count = 0
+    amounts.each do |amount|
+      new_ingredient = Ingredient.new({:ingredient => ingredients[count]})
+      new_ingredient.save
+      new_amount = UsedIngredient.new({:amount => amount, :ingredient_id => new_ingredient.id, :recipe_id => @recipe.id})
+      new_amount.save
+      count += 1
+    end
     redirect("/recipes/#{@recipe.id}")
   else
+    @recipe.errors[:base] << "Ingredients cannot be blank" if !ingredients.each {|ingredient| break if ingredient == ""}
+    @recipe.errors[:base] << "Amounts cannot be blank" if !amounts.each {|amount| break if amount == ""}
+    @tag.valid?
     erb(:add_recipe)
   end
 end

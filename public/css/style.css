@@ -13,3 +13,11 @@
 .add_field_button {
   margin-top: 10px;
 }
+
+ul {
+  list-style: none;
+}
+
+.jk-indent {
+  margin-left: 40px;
+}
