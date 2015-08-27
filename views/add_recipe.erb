@@ -1,4 +1,8 @@
-<h1>Add a Recipe</h1>
+<div class="recipe-card">
+  <h1>Add a Recipe</h1>
+</div>
+<div class="card-main">
+
 <% if @recipe %>
   <% @recipe.errors.full_messages.each do |error| %>
     <div class="alert alert-danger"><%= error %></div>
@@ -9,7 +13,6 @@
     <div class="alert alert-danger"><%= error %></div>
   <% end %>
 <% end %>
-
 <form action="/recipes/new" method="post">
   <div class="form-group">
     <label for="name">Name</label>
@@ -35,3 +38,4 @@
   </div>
   <button class="btn btn-primary btn-md">Add</button>
 </form>
+</div>

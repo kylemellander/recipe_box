@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-sm-9">
-    <h1>Recipes in <%= @category.tag %></h1>
+    <div class="recipe-card">
+      <h1>Recipes in <%= @category.tag %></h1>
+    </div>
+    <div class="card-main">
     <% if @category.recipes.any? %>
       <ul class="list-group">
       <% @category.recipes.each do |recipe| %>
-        <li class="list-group-item"><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+        <li class="jk-list"><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
       <% end %>
       </ul>
     <% else %>
@@ -14,6 +17,7 @@
     <a href="/category/<%= @category.id %>/edit" class="btn btn-primary btn-md">Edit</a>
 
     <a href="/category/<%= @category.id %>/delete" class="btn btn-danger btn-md">Delete</a>
+    </div>
   </div>
   <div class="col-sm-3">
     <h1>Cats</h1>

@@ -15,7 +15,7 @@ class Rating < ActiveRecord::Base
     end
 
     recipe = Recipe.find(recipe_id)
-    avg_rating = sum/count
-    recipe.update({:avg_rating => avg_rating})
+    avg_rating = sum.to_f/count.to_f
+    recipe.update({:avg_rating => avg_rating.round(2)})
   end
 end

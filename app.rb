@@ -141,6 +141,7 @@ end
 get("/rating/:id/:rating") do
   rating = params['rating'].to_i
   recipe_id = params['id'].to_i
-  Rating.create({:rating => rating, :recipe_id => recipe_id})
+  rating_object = Rating.new({:rating => rating, :recipe_id => recipe_id})
+  rating_object.save
   redirect("/recipes/#{recipe_id}")
 end

@@ -1,35 +1,38 @@
-<h1><%= @recipe.name %></h1>
+<div class="recipe-card">
+  <h1><%= @recipe.name %></h1>
+  <div class="card-main">
+    <h3>Ingredients</h3>
+    <ul>
+      <% count = 0 %>
+      <% @recipe.ingredients.each do |ingredient|%>
+      <li><strong><%= @recipe.used_ingredients[count].amount %></strong> <%= ingredient.ingredient %> </li>
+      <% count += 1 %>
+      <% end %>
+    </ul>
 
-<h3>Ingredients</h3>
-<ul>
-  <% count = 0 %>
-<% @recipe.ingredients.each do |ingredient|%>
-<li><strong><%= @recipe.used_ingredients[count].amount %></strong> <%= ingredient.ingredient %> </li>
-<% count += 1 %>
-<% end %>
-</ul>
+    <h3>Instructions</h3>
+    <p class="jk-indent"><%= @recipe.instructions %></p>
 
-<h3>Instructions</h3>
-<p class="jk-indent"><%= @recipe.instructions %></p>
-
-<h3>Tags</h3>
-<p><%= @recipe.display_tags %></p>
-
-
-<a href="/recipe/<%= @recipe.id %>/edit" class="btn btn-primary btn-md">Edit</a>
-
-<a href="/recipe/<%= @recipe.id %>/delete" class="btn btn-danger btn-md">Delete</a>
+    <h3>Tags</h3>
+    <p><%= @recipe.display_tags %></p>
 
 
-<h3>Rate this recipe</h3>
+    <a href="/recipe/<%= @recipe.id %>/edit" class="btn btn-primary btn-md">Edit</a>
 
-<div class="rating">
-  <a href="/rating/<%= @recipe.id %>/1">☆</a>
-  <a href="/rating/<%= @recipe.id %>/2">☆</a>
-  <a href="/rating/<%= @recipe.id %>/3">☆</a>
-  <a href="/rating/<%= @recipe.id %>/4">☆</a>
-  <a href="/rating/<%= @recipe.id %>/5">☆</a>
+    <a href="/recipe/<%= @recipe.id %>/delete" class="btn btn-danger btn-md">Delete</a>
+
+
+    <h3>Rate this recipe</h3>
+
+    <div class="rating">
+      <a href="/rating/<%= @recipe.id %>/5">☆</a>
+      <a href="/rating/<%= @recipe.id %>/4">☆</a>
+      <a href="/rating/<%= @recipe.id %>/3">☆</a>
+      <a href="/rating/<%= @recipe.id %>/2">☆</a>
+      <a href="/rating/<%= @recipe.id %>/1">☆</a>
+    </div>
+
+    <h3>Average Rating</h3>
+    <p><%= @recipe.avg_rating %></p>
+  </div>
 </div>
-
-<h3>Average Rating</h3>
-<p><%= @recipe.avg_rating %></p>
